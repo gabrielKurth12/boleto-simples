@@ -1,6 +1,9 @@
 package br.com.gark.boletosimples.service;
 
+import java.text.ParseException;
 import java.util.List;
+
+import javax.swing.text.MaskFormatter;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -28,8 +31,11 @@ public class CustomersService extends AbstractService {
 		return response.getBody();
 	}
 
-	public CustomerDTO findById(final Long id) {
-		StringBuilder url = new StringBuilder(BASE_URL).append("/").append(id);
+	public CustomerDTO findByCnpj(final String cnpj) throws ParseException {
+        MaskFormatter mask = new MaskFormatter("##.###.###/####-##");
+		mask.setValueContainsLiteralCharacters(false);
+		
+		StringBuilder url = new StringBuilder(BASE_URL).append("/").append("cnpj_cpf?q=").append(mask.valueToString(cnpj));
 		return restTemplate.exchange(url.toString(), //
 				HttpMethod.GET, //
 				new HttpEntity<>(connectionService.createHttpHeaders()), //

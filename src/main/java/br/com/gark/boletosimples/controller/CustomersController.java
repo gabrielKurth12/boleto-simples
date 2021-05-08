@@ -1,5 +1,6 @@
 package br.com.gark.boletosimples.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,9 @@ public class CustomersController {
 		return customersService.listAll();
 	}
 
-	@GetMapping("{id}")
-	public CustomerDTO findById(@PathVariable final Long id) {
-		return customersService.findById(id);
+	@GetMapping("{cnpj}")
+	public CustomerDTO findByCnpj(@PathVariable final String cnpj) throws ParseException {
+		return customersService.findByCnpj(cnpj);
 	}
 
 }

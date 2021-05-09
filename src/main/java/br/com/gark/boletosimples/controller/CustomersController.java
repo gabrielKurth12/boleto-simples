@@ -24,7 +24,7 @@ public class CustomersController {
 	private CustomersService customersService;
 
 	@GetMapping
-	public List<CustomerDTO> getAllCustomers() {
+	public List<CustomerDTO> getAll() {
 		return customersService.listAll();
 	}
 
@@ -32,7 +32,7 @@ public class CustomersController {
 	public CustomerDTO findByCnpj(@PathVariable final String cnpj) throws ParseException {
 		return customersService.findByCnpj(cnpj);
 	}
-	
+
 	@PostMapping
 	public Long create(@RequestBody @Valid final CustomerDTO customerDTO) {
 		return customersService.create(customerDTO);

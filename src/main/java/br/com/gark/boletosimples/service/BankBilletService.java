@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.gark.boletosimples.domain.dto.BankBilletDTO;
+import br.com.gark.boletosimples.domain.dto.BankBilletDTOWrapper;
 import br.com.gark.boletosimples.domain.enumeration.MethodEnum;
 import br.com.gark.boletosimples.domain.enumeration.UrlEnum;
 
@@ -28,18 +29,21 @@ public class BankBilletService extends AbstractService {
 		return response.getBody();
 	}
 
-	public BankBilletDTO findById(final Long id)  {
+	public BankBilletDTO findById(final Long id) {
 		return restTemplate.exchange(BASE_URL + "/" + id, //
 				HttpMethod.GET, //
 				new HttpEntity<>(connectionService.createHttpHeaders()), //
 				BankBilletDTO.class).getBody();
 	}
-//
-//	public Long create(final CustomerDTO customerDTO) {
-//		ResponseEntity<CustomerDTO> response = restTemplate.exchange(BASE_URL, HttpMethod.POST,
-//				new HttpEntity<>(customerDTO, connectionService.createHttpHeaders()), CustomerDTO.class);
-//
-//		return response.getBody().getId();
-//	}
+
+	public Long create(final BankBilletDTO bankBilletDTO) {
+		ResponseEntity<BankBilletDTO> response = restTemplate.exchange(BASE_URL, //
+				HttpMethod.POST, //
+				new HttpEntity<>(BankBilletDTOWrapper.builder().bankBillet(bankBilletDTO).build(),
+						connectionService.createHttpHeaders()), //
+				BankBilletDTO.class);
+
+		return response.getBody().getId();
+	}
 
 }

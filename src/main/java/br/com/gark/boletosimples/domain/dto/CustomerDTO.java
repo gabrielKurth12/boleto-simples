@@ -1,5 +1,7 @@
 package br.com.gark.boletosimples.domain.dto;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,48 +19,55 @@ import lombok.Setter;
 public class CustomerDTO {
 
 	@JsonProperty("id")
-	Long id;
+	private Long id;
 
 	@JsonProperty("person_type")
-	String personType;
+	private String personType;
 
+	@NotNull
 	@JsonProperty("person_name")
-	String personName;
+	private String personName;
 
+	@NotNull
 	@JsonProperty("cnpj_cpf")
-	String cpfCnpj;
+	private String cpfCnpj;
 
+	@NotNull
 	@JsonProperty("address")
-	String address;
+	private String address;
 
+	@NotNull
+	@JsonProperty("city_name")
+	private String cityName;
+
+	@NotNull
 	@JsonProperty("state")
-	String state;
+	private String state;
 
+	@NotNull
 	@JsonProperty("neighborhood")
-	String neighborhood;
+	private String neighborhood;
 
+	@NotNull
 	@JsonProperty("zipcode")
-	String zipcode;
+	private String zipcode;
 
 	@JsonProperty("address_number")
-	String addressNumber;
+	private String addressNumber;
 
 	@JsonProperty("address_complement")
-	String addressComplement;
+	private String addressComplement;
 
 	@JsonProperty("phone_number")
-	String phoneNumber;
+	private String phoneNumber;
 
 	@JsonProperty("email")
-	String email;
+	private String email;
 
 	@JsonProperty("mobile_local_code")
-	String mobileLocalCode;
+	private String mobileLocalCode;
 
 	@JsonProperty("mobile_number")
-	String mobileNumber;
-
-	@JsonProperty("city_name")
-	String cityName;
+	private String mobileNumber;
 
 }

@@ -7,6 +7,7 @@ import javax.swing.text.MaskFormatter;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -32,14 +33,22 @@ public class CustomersService extends AbstractService {
 	}
 
 	public CustomerDTO findByCnpj(final String cnpj) throws ParseException {
-        MaskFormatter mask = new MaskFormatter("##.###.###/####-##");
+		MaskFormatter mask = new MaskFormatter("##.###.###/####-##");
 		mask.setValueContainsLiteralCharacters(false);
-		
-		StringBuilder url = new StringBuilder(BASE_URL).append("/").append("cnpj_cpf?q=").append(mask.valueToString(cnpj));
+
+		StringBuilder url = new StringBuilder(BASE_URL).append("/").append("cnpj_cpf?q=")
+				.append(mask.valueToString(cnpj));
 		return restTemplate.exchange(url.toString(), //
 				HttpMethod.GET, //
 				new HttpEntity<>(connectionService.createHttpHeaders()), //
 				CustomerDTO.class).getBody();
+	}
+
+	public Long create(final CustomerDTO customerDTO) {
+		ResponseEntity<CustomerDTO> response = restTemplate.exchange(BASE_URL, HttpMethod.POST,
+				new HttpEntity<>(customerDTO, connectionService.createHttpHeaders()), CustomerDTO.class);
+
+		return response.getBody().getId();
 	}
 
 }

@@ -21,7 +21,7 @@ public class CustomersService extends AbstractService {
 	private static final String BASE_URL = UrlEnum.URL_TESTE.getUrl() + MethodEnum.CUSTOMERS.getMethod();
 
 	public List<CustomerDTO> listAll() {
-		ParameterizedTypeReference<List<CustomerDTO>> responseType = new ParameterizedTypeReference<>() {
+		ParameterizedTypeReference<List<CustomerDTO>> responseType = new ParameterizedTypeReference	() {
 		};
 		ResponseEntity<List<CustomerDTO>> response = restTemplate.exchange(BASE_URL, //
 				HttpMethod.GET, //

@@ -15,7 +15,7 @@
 	<name>boleto-simples</name>
 	<description>Projeto para integrar a API do boleto simples</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

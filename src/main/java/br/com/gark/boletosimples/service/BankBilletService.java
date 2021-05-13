@@ -19,7 +19,7 @@ public class BankBilletService extends AbstractService {
 	private static final String BASE_URL = UrlEnum.URL_TESTE.getUrl() + MethodEnum.BANK_BILLETS.getMethod();
 
 	public List<BankBilletDTO> listAll() {
-		ParameterizedTypeReference<List<BankBilletDTO>> responseType = new ParameterizedTypeReference<>() {
+		ParameterizedTypeReference<List<BankBilletDTO>> responseType = new ParameterizedTypeReference() {
 		};
 		ResponseEntity<List<BankBilletDTO>> response = restTemplate.exchange(BASE_URL, //
 				HttpMethod.GET, //
